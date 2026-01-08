@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AWS CLF-C02 Exam Simulator (Sectioned)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      direction: ltr;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      min-height: 100vh;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    .top-bar {
+      background: #0073bb;
+      color: white;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+    .top-bar .exam-title {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .top-bar .progress {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .bookmark-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+    }
+    .bookmark-toggle input {
+      margin: 0;
+      transform: scale(0.85);
+    }
+    .section-nav {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-left: 10px;
+    }
+    .section-btn {
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .section-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .section-btn.active {
+      background: #fff;
+      color: #0073bb;
+      border-color: #0073bb;
+    }
+    .content {
+      padding: 25px 30px;
+    }
+    .question {
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fafcff;
+      border-left: 5px solid #3498db;
+      position: relative;
+    }
+    .question h3 {
+      margin: 0 0 8px 0;
+      color: #2c3e50;
+      font-size: 16px;
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+    /* ✅ Style for Arabic question */
+    .question-ar {
+      display: block;
+      font-size: 15px;
+      color: #555;
+      font-weight: normal;
+      margin: 4px 0 12px 0;
+      line-height: 1.5;
+      font-family: 'Segoe UI', 'Tahoma', sans-serif;
+    }
+    .options label {
+      display: block;
+      margin: 0 0 2px 0;
+      padding: 10px 15px 10px 45px;
+      background: #f9fbfd;
+      border-radius: 6px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+      text-align: left;
+      font-size: 14.5px;
+    }
+    .options input {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .correct-answer::before,
+    .wrong-answer::before {
+      content: "✓";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: bold;
+      font-size: 17px;
+      color: #27ae60;
+    }
+    .wrong-answer::before { 
+      content: "✗"; color: #e74c3c; 
+    }
+    .highlight-correct { background-color: #e8f5e9 !important; border-left: 5px solid #4caf50; }
+    .highlight-wrong { background-color: #ffebee !important; border-left: 5px solid #f44336; }
+    .highlight-missed { background-color: #fff8e1 !important; border-left: 5px solid #ffc107; }
+
+    /* ✅ Explanation Box Style */
+    .explanation-box {
+      margin-top: 16px;
+      padding: 14px;
+      background-color: #f0f7ff;
+      border-left: 4px solid #0073bb;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #222;
+      display: none; /* hidden by default */
+    }
+    .explanation-box h4 {
+      margin: 0 0 8px 0;
+      color: #005a9c;
+      font-weight: 600;
+    }
+    .explanation-box .en { font-weight: 600; color: #005a9c; margin-bottom: 6px; }
+    .explanation-box .ar { font-weight: 600; color: #c00; margin-top: 8px; }
+
+    .wrong-link, .bookmark-link {
+      color: #e74c3c;
+      text-decoration: underline;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .bookmark-link {
+      color: #3498db;
+    }
+    .wrong-link:hover, .bookmark-link:hover {
+      opacity: 0.8;
+    }
+
+    .bottom-bar {
+      background: #f8f9fa;
+      padding: 15px 20px;
+      border-top: 1px solid #dee2e6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .nav-btn {
+      background: #0073bb;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nav-btn:hover { background: #005a9c; }
+    .nav-btn:disabled { background: #adb5bd; cursor: not-allowed; }
+    .check-btn { background: #27ae60; color: white; }
+    .check-btn:hover { background: #219653; }
+    .explain-btn { background: #7b68ee; color: white; } /* Purple for Explain */
+    .explain-btn:hover { background: #5d4ae8; }
+    .end-btn { background: #dc3545; color: white; }
+    .end-btn:hover { background: #c82333; }
+    #result {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 25px;
+      padding: 20px;
+      background: #eef7ff;
+      border-radius: 8px;
+      display: none;
+    }
+    #loading {
+      text-align: center;
+      color: #0073bb;
+      font-weight: bold;
+      font-size: 18px;
+      margin: 30px 0;
+    }
+    .section-indicator {
+      display: inline-block;
+      margin-left: 10px;
+      font-weight: 600;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="top-bar">
+    <div class="exam-title">AWS Certified Cloud Practitioner (CLF-C02) <span class="section-indicator" id="sectionIndicator">Section 1 (1–50)</span></div>
+    <div class="section-nav" id="sectionNav">
+      <button class="section-btn active" data-section="1">1-50</button>
+      <button class="section-btn" data-section="2">51-100</button>
+      <button class="section-btn" data-section="3">101-150</button>
+      <button class="section-btn" data-section="4">151-200</button>
+      <button class="section-btn" data-section="5">201-250</button>
+      <button class="section-btn" data-section="6">251-300</button>
+      <button class="section-btn" data-section="7">301-350</button>
+      <button class="section-btn" data-section="8">351-400</button>
+      <button class="section-btn" data-section="9">401-450</button>
+      <button class="section-btn" data-section="10">451-500</button>
+      <button class="section-btn" data-section="11">501-550</button>
+      <button class="section-btn" data-section="12">551-600</button>
+      <button class="section-btn" data-section="13">601-650</button>
+      <button class="section-btn" data-section="14">651-700</button>
+      <button class="section-btn" data-section="15">701-750</button>
+      <button class="section-btn" data-section="16">751-800</button>
+      <button class="section-btn" data-section="17">801-814</button>
+    </div>
+    <div class="progress">
+      Question <span id="currentQ">1</span> of <span id="totalQ">50</span>
+      <label class="bookmark-toggle">
+        <input type="checkbox" id="bookmarkQ" title="Mark for review">
+        ★
+      </label>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="loading">Loading questions…</div>
+    <div id="examContainer" style="display: none;">
+      <form id="examForm"></form>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <button class="nav-btn" id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
+    <button class="nav-btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+    <button class="nav-btn check-btn" onclick="checkAnswer()">Check Answer</button>
+    <button class="nav-btn explain-btn" onclick="toggleExplanation()">Explain</button>
+    <button class="nav-btn end-btn" id="endBtn" onclick="endSection()">End Section</button>
+  </div>
+
+  <div id="result"></div>
+</div>
+
+<script>
+// ✅ تعريف المتغيرات العامة
+let prevBtn, nextBtn, endBtn, examForm, examContainer, loading, result, currentQ, totalQ, sectionIndicator;
+let questionsData = [];
+let currentQuestionIndex = 0;
+let currentSection = 1;
+let sectionAnswers = {};
+let userAnswersStore = {};
+let bookmarkedQuestions = new Set();
+
+function getSectionBounds(sectionNum) {
+  if (sectionNum < 1 || sectionNum > 17) return null;
+  const start = (sectionNum - 1) * 50;
+  let end = start + 50;
+  if (sectionNum === 17) end = 814;
+  return {
+    start,
+    end: Math.min(end, questionsData.length),
+    size: Math.min(50, questionsData.length - start),
+    sectionNum
+  };
+}
+
+function saveBookmarks() {
+  localStorage.setItem('bookmarkedQuestions', JSON.stringify(Array.from(bookmarkedQuestions)));
+}
+
+function renderQuestion(index) {
+  const q = questionsData[index];
+  if (!q) {
+    examForm.innerHTML = `<div class="question">❌ Error: Question #${index + 1} not found.</div>`;
+    return;
+  }
+
+  const qId = `q${index}`;
+  const type = q.type || "single";
+
+  let htmlOptions = "";
+  ["A","B","C","D","E"].forEach(letter => {
+    if (q[letter]) {
+      const inputType = type === "multiple" ? "checkbox" : "radio";
+      htmlOptions += `
+        <label>
+          <input type="${inputType}" name="${qId}" value="${letter}">
+          ${letter}) ${q[letter]}
+        </label>
+      `;
+    }
+  });
+
+  // ✅ عرض السؤال: إنجليزي → عربي → اختيارات
+  let questionHtml = q.question;
+  if (q.question_ar) {
+    questionHtml += `<br><span class="question-ar">${q.question_ar}</span>`;
+  }
+
+  // ✅ عرض الشرح: إنجليزي + عربي (إذا وُجد)
+  let explanationHtml = "";
+  if (q.explanation_en) {
+    explanationHtml += `<div class="en">(EN) ${q.explanation_en}</div>`;
+  }
+  if (q.explanation_ar) {
+    explanationHtml += `<div class="ar">(AR) ${q.explanation_ar}</div>`;
+  }
+  if (!explanationHtml) {
+    explanationHtml = "No explanation available.";
+  }
+
+  examForm.innerHTML = `
+    <div class="question" data-index="${index}" data-type="${type}">
+      <h3>${questionHtml}</h3>
+      <div class="options">${htmlOptions}</div>
+      <div class="explanation-box" id="explanationBox">
+        <h4>💡 Explanation:</h4>
+        <div id="explanationText">${explanationHtml}</div>
+      </div>
+    </div>
+  `;
+
+  // إعادة تحميل إجابات المستخدم
+  if (userAnswersStore[index]) {
+    userAnswersStore[index].forEach(v => {
+      const input = examForm.querySelector(`input[name="${qId}"][value="${v}"]`);
+      if (input) input.checked = true;
+    });
+  }
+
+  // ربط التغييرات بالإجابات
+  examForm.querySelectorAll(`input[name="${qId}"]`).forEach(inp => {
+    inp.addEventListener("change", () => {
+      if (type === "single") {
+        userAnswersStore[index] = [inp.value];
+      } else {
+        const checked = examForm.querySelectorAll(`input[name="${qId}"]:checked`);
+        userAnswersStore[index] = Array.from(checked).map(x => x.value);
+      }
+    });
+  });
+
+  // تحديث حالة زر ★
+  const bookmarkCheckbox = document.getElementById('bookmarkQ');
+  if (bookmarkCheckbox) {
+    bookmarkCheckbox.checked = bookmarkedQuestions.has(index);
+    bookmarkCheckbox.onclick = () => {
+      if (bookmarkCheckbox.checked) {
+        bookmarkedQuestions.add(index);
+      } else {
+        bookmarkedQuestions.delete(index);
+      }
+      saveBookmarks();
+    };
+  }
+
+  // إخفاء الشرح افتراضيًا
+  document.getElementById('explanationBox').style.display = 'none';
+}
+
+function updateProgress() {
+  const bounds = getSectionBounds(currentSection);
+  if (!bounds) return;
+
+  const localIndex = currentQuestionIndex - bounds.start + 1;
+  currentQ.textContent = localIndex;
+  totalQ.textContent = bounds.size;
+
+  const sectionText = bounds.sectionNum === 17
+    ? `Section ${bounds.sectionNum} (801–814)`
+    : `Section ${bounds.sectionNum} (${bounds.start + 1}–${bounds.end})`;
+  sectionIndicator.textContent = sectionText;
+
+  document.querySelectorAll(".section-btn").forEach(btn => {
+    const sec = parseInt(btn.getAttribute("data-section"));
+    btn.classList.toggle("active", sec === currentSection);
+  });
+
+  prevBtn.disabled = currentQuestionIndex === bounds.start;
+  nextBtn.disabled = currentQuestionIndex === bounds.end - 1;
+}
+
+function goToSection(sectionNum) {
+  const bounds = getSectionBounds(sectionNum);
+  if (!bounds || bounds.start >= questionsData.length) return;
+
+  sectionAnswers[currentSection] = {...userAnswersStore};
+
+  currentSection = sectionNum;
+  userAnswersStore = sectionAnswers[currentSection] || {};
+  currentQuestionIndex = bounds.start;
+
+  renderQuestion(currentQuestionIndex);
+  updateProgress();
+
+  result.style.display = "none";
+  document.querySelector(".bottom-bar").style.display = "flex";
+}
+
+function jumpToQuestionBookmark(qNumber) {
+  const index = qNumber - 1;
+  if (index < 0 || index >= questionsData.length) return;
+
+  const targetSection = Math.floor(index / 50) + 1;
+
+  if (targetSection !== currentSection) {
+    goToSection(targetSection);
+    setTimeout(() => {
+      currentQuestionIndex = index;
+      renderQuestion(currentQuestionIndex);
+      updateProgress();
+    }, 50);
+  } else {
+    currentQuestionIndex = index;
+    renderQuestion(currentQuestionIndex);
+    updateProgress();
+  }
+}
+
+function prevQuestion() {
+  const bounds = getSectionBounds(currentSection);
+  if (currentQuestionIndex > bounds.start) {
+    currentQuestionIndex--;
+    renderQuestion(currentQuestionIndex);
+    updateProgress();
+    result.style.display = "none";
+    document.querySelector(".bottom-bar").style.display = "flex";
+  }
+}
+
+function nextQuestion() {
+  const bounds = getSectionBounds(currentSection);
+  if (currentQuestionIndex < bounds.end - 1) {
+    currentQuestionIndex++;
+    renderQuestion(currentQuestionIndex);
+    updateProgress();
+    result.style.display = "none";
+    document.querySelector(".bottom-bar").style.display = "flex";
+  }
+}
+
+function checkAnswer() {
+  const q = questionsData[currentQuestionIndex];
+  if (!q) return;
+
+  const correct = (q.correct || "").split(",").map(a => a.trim().toUpperCase());
+  const labels = examForm.querySelectorAll(".options label");
+
+  labels.forEach(l => {
+    l.classList.remove("highlight-correct","highlight-wrong","highlight-missed","correct-answer","wrong-answer");
+  });
+
+  const user = userAnswersStore[currentQuestionIndex] || [];
+
+  labels.forEach(lbl => {
+    const val = lbl.querySelector("input").value;
+    const selected = user.includes(val);
+    const isCorrect = correct.includes(val);
+
+    if (selected && isCorrect) {
+      lbl.classList.add("highlight-correct","correct-answer");
+    } else if (selected && !isCorrect) {
+      lbl.classList.add("highlight-wrong","wrong-answer");
+    } else if (!selected && isCorrect) {
+      lbl.classList.add("highlight-missed","correct-answer");
+    }
+  });
+}
+
+function toggleExplanation() {
+  const expBox = document.getElementById('explanationBox');
+  if (!expBox) return;
+
+  expBox.style.display = expBox.style.display === 'block' ? 'none' : 'block';
+}
+
+function endSection() {
+  const bounds = getSectionBounds(currentSection);
+  if (!bounds) return;
+
+  let correctCount = 0;
+  const incorrectOrMissed = [];
+  const currentBookmarks = [];
+
+  for (let i = bounds.start; i < bounds.end; i++) {
+    const q = questionsData[i];
+    if (!q) continue;
+
+    const correct = (q.correct || "").split(",").map(a => a.trim().toUpperCase());
+    const user = (userAnswersStore[i] || []).map(a => a.toUpperCase());
+
+    const s1 = correct.slice().sort().join(",");
+    const s2 = user.slice().sort().join(",");
+
+    if (s1 === s2) {
+      correctCount++;
+    } else {
+      incorrectOrMissed.push(i + 1);
+    }
+
+    if (bookmarkedQuestions.has(i)) {
+      currentBookmarks.push(i + 1);
+    }
+  }
+
+  const total = bounds.size;
+  const percent = Math.round((correctCount / total) * 100);
+  const pass = percent >= 70;
+
+  const wrongLinks = incorrectOrMissed.map(num =>
+    `<a href="#" class="wrong-link" onclick="jumpToQuestionBookmark(${num}); return false;">${num}</a>`
+  ).join(", ");
+
+  const bookmarkLinks = currentBookmarks.length > 0
+    ? currentBookmarks.map(num =>
+        `<a href="#" class="bookmark-link" onclick="jumpToQuestionBookmark(${num}); return false;">${num}</a>`
+      ).join(", ")
+    : "None";
+
+  const wrongList = incorrectOrMissed.length > 0
+    ? `<p><strong>Wrong / Missed:</strong> ${wrongLinks}</p>`
+    : `<p><strong>✅ All answers correct!</strong></p>`;
+
+  result.innerHTML = `
+    <h2>${pass ? '✅' : '⚠️'} Section ${currentSection} Result</h2>
+    <p><strong>Questions:</strong> ${total}</p>
+    <p><strong>Correct:</strong> ${correctCount}</p>
+    <p><strong>Incorrect / Missed:</strong> ${total - correctCount}</p>
+    ${wrongList}
+    <p><strong>Bookmarked for Review:</strong> ${bookmarkLinks}</p>
+    <p style="font-size:24px; color:${pass ? '#27ae60' : '#e74c3c'};">
+      Score: <strong>${percent}%</strong> ${pass ? '✓ Pass' : '✗ Review Needed'}
+    </p>
+    <button class="nav-btn" onclick="goToSection(${currentSection === 17 ? 1 : currentSection + 1})" 
+            style="margin-top:15px; background:#0073bb;">
+      ${currentSection === 17 ? 'Restart Section 1' : 'Next Section →'}
+    </button>
+  `;
+  result.style.display = "block";
+  document.querySelector(".bottom-bar").style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  prevBtn = document.getElementById('prevBtn');
+  nextBtn = document.getElementById('nextBtn');
+  endBtn = document.getElementById('endBtn');
+  examForm = document.getElementById('examForm');
+  examContainer = document.getElementById('examContainer');
+  loading = document.getElementById('loading');
+  result = document.getElementById('result');
+  currentQ = document.getElementById('currentQ');
+  totalQ = document.getElementById('totalQ');
+  sectionIndicator = document.getElementById('sectionIndicator');
+
+  document.querySelectorAll(".section-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sec = parseInt(btn.getAttribute("data-section"));
+      goToSection(sec);
+    });
+  });
+
+  loadQuestions();
+});
+
+function loadQuestions() {
+  fetch('questions.json')
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}: ${r.statusText}`);
+      return r.json();
+    })
+    .then(data => {
+      if (!Array.isArray(data)) {
+        throw new Error("questions.json must be an array of questions.");
+      }
+      questionsData = data;
+      const saved = localStorage.getItem('bookmarkedQuestions');
+      if (saved) {
+        try {
+          bookmarkedQuestions = new Set(JSON.parse(saved));
+        } catch (e) {
+          console.warn("Failed to parse bookmarks, resetting.");
+          bookmarkedQuestions = new Set();
+        }
+      }
+      goToSection(1);
+      loading.style.display = "none";
+      examContainer.style.display = "block";
+    })
+    .catch(err => {
+      loading.innerHTML = `❌ Error loading questions.json: ${err.message || err}`;
+      console.error(err);
+    });
+}
+</script>
+
+</body>
+</html>
