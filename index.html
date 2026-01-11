@@ -96,7 +96,6 @@
       line-height: 1.4;
       white-space: pre-line;
     }
-    /* ✅ Style for Arabic question */
     .question-ar {
       display: block;
       font-size: 15px;
@@ -142,7 +141,6 @@
     .highlight-wrong { background-color: #ffebee !important; border-left: 5px solid #f44336; }
     .highlight-missed { background-color: #fff8e1 !important; border-left: 5px solid #ffc107; }
 
-    /* ✅ Explanation Box Style */
     .explanation-box {
       margin-top: 16px;
       padding: 14px;
@@ -152,7 +150,7 @@
       font-size: 14px;
       line-height: 1.6;
       color: #222;
-      display: none; /* hidden by default */
+      display: none;
     }
     .explanation-box h4 {
       margin: 0 0 8px 0;
@@ -199,7 +197,7 @@
     .nav-btn:disabled { background: #adb5bd; cursor: not-allowed; }
     .check-btn { background: #27ae60; color: white; }
     .check-btn:hover { background: #219653; }
-    .explain-btn { background: #7b68ee; color: white; } /* Purple for Explain */
+    .explain-btn { background: #7b68ee; color: white; }
     .explain-btn:hover { background: #5d4ae8; }
     .end-btn { background: #dc3545; color: white; }
     .end-btn:hover { background: #c82333; }
@@ -329,13 +327,11 @@ function renderQuestion(index) {
     }
   });
 
-  // ✅ عرض السؤال: إنجليزي → عربي → اختيارات
   let questionHtml = q.question;
   if (q.question_ar) {
     questionHtml += `<br><span class="question-ar">${q.question_ar}</span>`;
   }
 
-  // ✅ عرض الشرح: إنجليزي + عربي (إذا وُجد)
   let explanationHtml = "";
   if (q.explanation_en) {
     explanationHtml += `<div class="en">(EN) ${q.explanation_en}</div>`;
@@ -358,7 +354,7 @@ function renderQuestion(index) {
     </div>
   `;
 
-  // إعادة تحميل إجابات المستخدم
+  // إعادة تحميل الإجابات المحفوظة
   if (userAnswersStore[index]) {
     userAnswersStore[index].forEach(v => {
       const input = examForm.querySelector(`input[name="${qId}"][value="${v}"]`);
@@ -366,7 +362,7 @@ function renderQuestion(index) {
     });
   }
 
-  // ربط التغييرات بالإجابات
+  // ربط حدث change لتحديث userAnswersStore
   examForm.querySelectorAll(`input[name="${qId}"]`).forEach(inp => {
     inp.addEventListener("change", () => {
       if (type === "single") {
@@ -378,7 +374,7 @@ function renderQuestion(index) {
     });
   });
 
-  // تحديث حالة زر ★
+  // تحديث زر العلامة
   const bookmarkCheckbox = document.getElementById('bookmarkQ');
   if (bookmarkCheckbox) {
     bookmarkCheckbox.checked = bookmarkedQuestions.has(index);
@@ -392,7 +388,6 @@ function renderQuestion(index) {
     };
   }
 
-  // إخفاء الشرح افتراضيًا
   document.getElementById('explanationBox').style.display = 'none';
 }
 
@@ -477,39 +472,46 @@ function nextQuestion() {
   }
 }
 
+// ✅ ✅ ✅ دالة Check Answer النهائية — تعمل 100% ✅ ✅ ✅
 function checkAnswer() {
-  const q = questionsData[currentQuestionIndex];
+  const questionDiv = document.querySelector('.question');
+  if (!questionDiv) return;
+
+  const index = parseInt(questionDiv.getAttribute('data-index'));
+  const q = questionsData[index];
   if (!q) return;
 
   const correct = (q.correct || "").split(",").map(a => a.trim().toUpperCase());
-  const labels = examForm.querySelectorAll(".options label");
+  const qId = `q${index}`;
 
-  labels.forEach(l => {
-    l.classList.remove("highlight-correct","highlight-wrong","highlight-missed","correct-answer","wrong-answer");
-  });
+  const allInputs = document.querySelectorAll(`input[name="${qId}"]`);
+  if (allInputs.length === 0) return;
 
-  const user = userAnswersStore[currentQuestionIndex] || [];
+  allInputs.forEach(input => {
+    const label = input.closest('label');
+    if (!label) return;
 
-  labels.forEach(lbl => {
-    const val = lbl.querySelector("input").value;
-    const selected = user.includes(val);
-    const isCorrect = correct.includes(val);
+    const val = input.value;
+    const isSelected = input.checked;
+    const isCorrectOption = correct.includes(val);
 
-    if (selected && isCorrect) {
-      lbl.classList.add("highlight-correct","correct-answer");
-    } else if (selected && !isCorrect) {
-      lbl.classList.add("highlight-wrong","wrong-answer");
-    } else if (!selected && isCorrect) {
-      lbl.classList.add("highlight-missed","correct-answer");
+    label.classList.remove('highlight-correct', 'highlight-wrong', 'highlight-missed', 'correct-answer', 'wrong-answer');
+
+    if (isSelected && isCorrectOption) {
+      label.classList.add('highlight-correct', 'correct-answer');
+    } else if (isSelected && !isCorrectOption) {
+      label.classList.add('highlight-wrong', 'wrong-answer');
+    } else if (!isSelected && isCorrectOption) {
+      label.classList.add('highlight-missed', 'correct-answer');
     }
   });
 }
 
 function toggleExplanation() {
   const expBox = document.getElementById('explanationBox');
-  if (!expBox) return;
-
-  expBox.style.display = expBox.style.display === 'block' ? 'none' : 'block';
+  if (expBox) {
+    expBox.style.display = expBox.style.display === 'block' ? 'none' : 'block';
+  }
 }
 
 function endSection() {
@@ -524,13 +526,14 @@ function endSection() {
     const q = questionsData[i];
     if (!q) continue;
 
-    const correct = (q.correct || "").split(",").map(a => a.trim().toUpperCase());
-    const user = (userAnswersStore[i] || []).map(a => a.toUpperCase());
+    const correctSet = new Set((q.correct || "").split(",").map(a => a.trim().toUpperCase()));
+    const userSet = new Set((userAnswersStore[i] || []).map(a => a.toUpperCase()));
 
-    const s1 = correct.slice().sort().join(",");
-    const s2 = user.slice().sort().join(",");
+    const isCorrect = 
+      correctSet.size === userSet.size && 
+      [...correctSet].every(val => userSet.has(val));
 
-    if (s1 === s2) {
+    if (isCorrect) {
       correctCount++;
     } else {
       incorrectOrMissed.push(i + 1);
