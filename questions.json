@@ -112,7 +112,7 @@
     "C": "AWS offers discounts for Amazon EC2 instances that remain idle for more than 1 week.",
     "D": "AWS does not charge for data sent from the AWS Cloud to the internet.",
     "E": "AWS eliminates many of the costs of building and maintaining on-premises data centers.",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "AWS allows businesses to adjust capacity on demand (elasticity) and eliminates the need for upfront capital expenditure on physical infrastructure, reducing operational and maintenance costs associated with on-premises data centers.",
     "explanation_ar": "تتيح AWS للشركات تعديل السعة حسب الطلب (المرونة) وتحذف الحاجة إلى إنفاق رأسمالي مبدئي على البنية التحتية المادية، مما يقلل التكاليف التشغيلية والصيانة المرتبطة بمراكز البيانات المحلية.",
     "domain": "Cloud Economics"
@@ -13382,3 +13382,4 @@
     "domain": "Networking"
   }
 ]
+
