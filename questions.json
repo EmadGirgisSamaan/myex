@@ -690,7 +690,7 @@
     "C": "Portfolio management",
     "D": "Risk management",
     "E": "Event management",
-    "correct": "AD",
+    "correct": "A,D",
     "explanation_en": "The Governance perspective in AWS CAF includes capabilities like program/project management and risk management to ensure cloud initiatives align with business goals and compliance requirements.",
     "explanation_ar": "يتضمن منظور الحوكمة في إطار عمل CAF قدرات مثل إدارة البرامج/المشاريع وإدارة المخاطر لضمان مواءمة مبادرات السحابة مع أهداف الأعمال ومتطلبات الامتثال.",
     "domain": "Cloud Strategy"
@@ -899,7 +899,7 @@
     "C": "AWS offers increased speed and agility.",
     "D": "AWS is responsible for patching the infrastructure.",
     "E": "Users benefit from economies of scale.",
-    "correct": "AE",
+    "correct": "A,E",
     "explanation_en": "AWS allows users to replace upfront capital costs (fixed) with pay-as-you-go pricing (variable) and leverages massive economies of scale to reduce prices.",
     "explanation_ar": "تسمح AWS للمستخدمين باستبدال التكاليف الرأسمالية المبدئية (ثابتة) بأسعار الدفع حسب الاستخدام (متغيرة) وتستفيد من وفورات الحجم الهائلة لخفض الأسعار.",
     "domain": "Cloud Economics"
@@ -952,7 +952,7 @@
     "C": "AWS Business Support",
     "D": "AWS Enterprise On-Ramp Support",
     "E": "AWS Enterprise Support",
-    "correct": "DE",
+    "correct": "D,E",
     "explanation_en": "Only AWS Enterprise On-Ramp and AWS Enterprise Support include a Technical Account Manager (TAM) for proactive guidance and architectural reviews.",
     "explanation_ar": "تشمل فقط خطط AWS Enterprise On-Ramp وAWS Enterprise Support مدير حساب فني (TAM) لتوجيه استباقي ومراجعات معمارية.",
     "domain": "Support"
@@ -1044,7 +1044,7 @@
     "C": "AWS Storage Gateway",
     "D": "Internet gateway",
     "E": "Subnet",
-    "correct": "DE",
+    "correct": "D,E",
     "explanation_en": "A VPC includes subnets and can be connected to the internet via an internet gateway. S3 buckets and API Gateway are not part of the VPC itself.",
     "explanation_ar": "يتضمّن VPC شبكات فرعية (subnets) ويمكن ربطه بالإنترنت عبر بوابة إنترنت. ولا تعتبر سطوح S3 أو API Gateway جزءًا من VPC نفسه.",
     "domain": "Networking"
@@ -1227,7 +1227,7 @@
     "C": "Create an IAM role and provide AWS Management Console access only.",
     "D": "Create an IAM policy with administrator access and attach it to the IAM user.",
     "E": "Create an IAM policy with Amazon RDS access and attach it to the IAM user.",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "To grant CLI/SDK-only access, create an IAM user with programmatic access (access key + secret key) and attach a policy that grants only the necessary RDS permissions.",
     "explanation_ar": "لمنح وصول CLI/SDK فقط، أنشئ مستخدم IAM مع وصول برمجي (مفتاح وصول + مفتاح سري) وأرفق سياسة تمنح فقط أذونات RDS الضرورية.",
     "domain": "Security"
@@ -1306,7 +1306,7 @@
     "C": "Writing the business logic code.",
     "D": "Installation of the computer language runtime.",
     "E": "Providing AWS Identity and Access Management (IAM) access to the Lambda service.",
-    "correct": "CE",
+    "correct": "C,E",
     "explanation_en": "For Lambda, AWS manages the infrastructure, OS, and runtime. The customer is responsible for the code and granting IAM permissions to the function.",
     "explanation_ar": "لـ Lambda، تدير AWS البنية التحتية والنظام الأساسي ووقت التشغيل. تكون الشركة مسؤولة عن الكود ومنح أذونات IAM للدالة.",
     "domain": "Shared Responsibility"
@@ -1372,7 +1372,7 @@
     "C": "Change acceleration",
     "D": "Architecture",
     "E": "Business",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "The six AWS CAF perspectives are: Business, People, Governance, Platform, Security, and Operations.",
     "explanation_ar": "منظورات AWS CAF الستة هي: الأعمال، الأفراد، الحوكمة، المنصة، الأمن، والعمليات.",
     "domain": "Cloud Strategy"
@@ -1490,7 +1490,7 @@
     "C": "Running application code with AWS Cloud",
     "D": "Enabling multi-factor authentication (MFA) with Amazon Cognito",
     "E": "Using AWS Trusted Advisor security checks",
-    "correct": "DE",
+    "correct": "D,E",
     "explanation_en": "Enabling MFA (e.g., via Cognito or IAM) and using Trusted Advisor security checks (like public S3 buckets or unused access keys) are effective security practices.",
     "explanation_ar": "تمكين المصادقة الثنائية (مثلًا عبر Cognito أو IAM) واستخدام فحوصات الأمان في Trusted Advisor (مثل سطوح S3 العامة أو مفاتيح الوصول غير المستخدمة) هي ممارسات أمنية فعّالة.",
     "domain": "Security"
@@ -1569,7 +1569,7 @@
     "C": "Economies of scale",
     "D": "AWS Enterprise Support at no additional cost",
     "E": "Bring-your-own-hardware model",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "AWS offers pay-as-you-go (consumption-based) pricing and leverages massive economies of scale to reduce costs for all customers.",
     "explanation_ar": "تقدم AWS تسعير الدفع حسب الاستخدام (بناءً على الاستهلاك) وتستفيد من وفورات الحجم الهائلة لخفض التكاليف لجميع العملاء.",
     "domain": "Cloud Economics"
@@ -1765,7 +1765,7 @@
     "C": "Amazon EC2",
     "D": "Amazon OpenSearch Service",
     "E": "Amazon Elastic File System (Amazon EFS)",
-    "correct": "BC",
+    "correct": "B,C",
     "explanation_en": "Amazon Aurora (PostgreSQL-compatible) and Amazon EC2 (where you can install PostgreSQL yourself) both support PostgreSQL databases.",
     "explanation_ar": "يدعم Amazon Aurora (المتوافق مع PostgreSQL) وAmazon EC2 (حيث يمكنك تثبيت PostgreSQL بنفسك) قواعد بيانات PostgreSQL.",
     "domain": "Databases"
@@ -1883,7 +1883,7 @@
     "C": "AWS Schema Conversion Tool",
     "D": "AWS Systems Manager",
     "E": "Amazon EMR",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "AWS DMS migrates data, and the Schema Conversion Tool converts commercial database schemas (e.g., Oracle) to open-source targets (e.g., PostgreSQL).",
     "explanation_ar": "يقوم AWS DMS بترحيل البيانات، وتقوم أداة تحويل المخطط بتحويل مخططات قواعد البيانات التجارية (مثل Oracle) إلى أهداف مفتوحة المصدر (مثل PostgreSQL).",
     "domain": "Migration"
@@ -1923,7 +1923,7 @@
     "C": "Repurchase",
     "D": "Replatform",
     "E": "Refactor",
-    "correct": "BC",
+    "correct": "B,C",
     "explanation_en": "Since the CMS is incompatible, the company can either purchase a new cloud-native CMS (Repurchase) or move the existing app as-is if technically feasible (Rehost).",
     "explanation_ar": "بما أن نظام إدارة المحتوى غير متوافق، يمكن للشركة إما شراء نظام إدارة محتوى جديد متوافق مع السحابة (إعادة الشراء) أو نقل التطبيق الحالي كما هو إذا كان ذلك ممكنًا تقنيًا (إعادة الاستضافة).",
     "domain": "Migration"
@@ -1937,7 +1937,7 @@
     "C": "Rotate credentials on a regular basis.",
     "D": "Create a shared set of access keys for system administrators.",
     "E": "Configure multi-factor authentication (MFA).",
-    "correct": "CE",
+    "correct": "C,E",
     "explanation_en": "AWS recommends regularly rotating credentials and enabling MFA on all privileged accounts (including root) to enhance security.",
     "explanation_ar": "توصي AWS بتدوير بيانات الاعتماد بانتظام وتمكين المصادقة الثنائية (MFA) على جميع الحسابات ذات الامتيازات (بما في ذلك الحساب الجذري) لتعزيز الأمان.",
     "domain": "Security"
@@ -2055,7 +2055,7 @@
     "C": "Users experience increased speed and agility.",
     "D": "Users benefit from massive economies of scale.",
     "E": "Users can move hardware from their data center to the AWS Cloud.",
-    "correct": "CD",
+    "correct": "C,D",
     "explanation_en": "Cloud adoption provides increased speed/agility (rapid provisioning) and economies of scale (lower costs due to AWS’s scale).",
     "explanation_ar": "يوفر تبني السحابة سرعة/مرونة متزايدة (توفير سريع) ووفورات الحجم (تكاليف أقل بسبب حجم AWS).",
     "domain": "Cloud Benefits"
@@ -2147,7 +2147,7 @@
     "C": "Encrypt data at rest on associated storage.",
     "D": "Install the physical hardware and cabling.",
     "E": "Provide physical security for the EC2 instances.",
-    "correct": "BC",
+    "correct": "B,C",
     "explanation_en": "Customers are responsible for patching the guest OS and encrypting data at rest (e.g., via EBS encryption); AWS handles the hypervisor and hardware.",
     "explanation_ar": "العملاء مسؤولون عن تصحيح نظام التشغيل الضيف وتشفير البيانات أثناء الراحة (مثلًا عبر تشفير EBS)؛ بينما تتعامل AWS مع برنامج الإشراف (hypervisor) والعتاد.",
     "domain": "Shared Responsibility"
@@ -2460,7 +2460,7 @@
     "C": "Complete control over the physical security of the infrastructure",
     "D": "Flexibility to scale up in minutes as the application becomes popular",
     "E": "Ability to pick the specific data centers that will host the application servers",
-    "correct": "BD",
+    "correct": "B,D",
     "explanation_en": "Cloud offers agility (rapid experimentation) and elasticity (instant scaling), unlike on-premises which requires upfront CAPEX and fixed capacity.",
     "explanation_ar": "توفر السحابة المرونة (التجريب السريع) والمرونة (التوسّع الفوري)، على عكس البنية المحلية التي تتطلب نفقات رأسمالية مبدئية وسعة ثابتة.",
     "domain": "Cloud Benefits"
@@ -2526,7 +2526,7 @@
     "C": "An edge location is an Availability Zone.",
     "D": "There are more AWS Regions than edge locations.",
     "E": "There are more Availability Zones than AWS Regions.",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "There are more AZs than Regions (each Region has multiple AZs), and far more edge locations (100+) than Regions (30+).",
     "explanation_ar": "هناك المزيد من مناطق التوفر (AZs) من المناطق (كل منطقة تحتوي على عدة مناطق توفر)، وهناك عدد أكبر بكثير من مواقع الحافة (100+) من المناطق (30+).",
     "domain": "Global Infrastructure"
@@ -2566,7 +2566,7 @@
     "C": "Elasticity",
     "D": "Pay-as-you-go resource",
     "E": "High availability",
-    "correct": "CD",
+    "correct": "C,D",
     "explanation_en": "Elasticity (auto-scaling) and pay-as-you-go pricing allow costs to align precisely with actual usage, avoiding over-provisioning.",
     "explanation_ar": "المرونة (القياس التلقائي) ونموذج الدفع حسب الاستخدام تسمح بمواءمة التكاليف بدقة مع الاستخدام الفعلي، وتجنب التخصيص الزائد.",
     "domain": "Cloud Economics"
@@ -2619,7 +2619,7 @@
     "C": "AWS Management Console",
     "D": "AWS Resource Access Manager (AWS RAM)",
     "E": "AWS Secrets Manager",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "Users can change their IAM password via the AWS Management Console or by using the AWS CLI command 'aws iam change-password'.",
     "explanation_ar": "يمكن للمستخدمين تغيير كلمة مرور IAM الخاصة بهم عبر وحدة تحكم AWS أو باستخدام أمر AWS CLI 'aws iam change-password'.",
     "domain": "Security"
@@ -2685,7 +2685,7 @@
     "C": "Use inline policies instead of customer managed policies.",
     "D": "Grant maximum privileges to IAM users.",
     "E": "Use groups to assign permissions to IAM users.",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "AWS recommends creating individual IAM users (not sharing credentials) and using groups to assign permissions for easier management.",
     "explanation_ar": "توصي AWS بإنشاء مستخدمي IAM فرديين (بدون مشاركة بيانات الاعتماد) واستخدام المجموعات لتعيين الأذونات لتسهيل الإدارة.",
     "domain": "Security"
@@ -2738,7 +2738,7 @@
     "C": "AWS Regions",
     "D": "Amazon S3",
     "E": "Amazon VPC",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "The AWS global infrastructure is composed of Regions, Availability Zones, and edge locations. Services like S3 and ElastiCache run on this infrastructure.",
     "explanation_ar": "تتكوّن البنية التحتية العالمية لـ AWS من المناطق ومناطق التوفر ومواقع الحافة. وتعمل خدمات مثل S3 وElastiCache على هذه البنية.",
     "domain": "Global Infrastructure"
@@ -2752,7 +2752,7 @@
     "C": "Guest operating systems",
     "D": "Physical security of hardware",
     "E": "Credentials and policies",
-    "correct": "AD",
+    "correct": "A,D",
     "explanation_en": "AWS is responsible for the security OF the cloud (hardware, global infrastructure, hypervisor), while customers are responsible for security IN the cloud.",
     "explanation_ar": "تتحمل AWS مسؤولية أمان السحابة (العتاد، البنية التحتية العالمية، برنامج الإشراف)، بينما يكون العملاء مسؤولين عن الأمان في السحابة.",
     "domain": "Shared Responsibility"
@@ -2974,7 +2974,7 @@
     "C": "Change acceleration",
     "D": "Architecture",
     "E": "Business",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "The six AWS CAF perspectives are: Business, People, Governance, Platform, Security, and Operations.",
     "explanation_ar": "منظورات AWS CAF الستة هي: الأعمال، الأفراد، الحوكمة، المنصة، الأمن، والعمليات.",
     "domain": "Cloud Strategy"
@@ -3092,7 +3092,7 @@
     "C": "Running application code with AWS Cloud",
     "D": "Enabling multi-factor authentication (MFA) with Amazon Cognito",
     "E": "Using AWS Trusted Advisor security checks",
-    "correct": "DE",
+    "correct": "D,E",
     "explanation_en": "Enabling MFA (e.g., via Cognito or IAM) and using Trusted Advisor security checks (like public S3 buckets or unused access keys) are effective security practices.",
     "explanation_ar": "تمكين المصادقة الثنائية (مثلًا عبر Cognito أو IAM) واستخدام فحوصات الأمان في Trusted Advisor (مثل سطوح S3 العامة أو مفاتيح الوصول غير المستخدمة) هي ممارسات أمنية فعّالة.",
     "domain": "Security"
@@ -3171,7 +3171,7 @@
     "C": "Economies of scale",
     "D": "AWS Enterprise Support at no additional cost",
     "E": "Bring-your-own-hardware model",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "AWS offers pay-as-you-go (consumption-based) pricing and leverages massive economies of scale to reduce costs for all customers.",
     "explanation_ar": "تقدم AWS تسعير الدفع حسب الاستخدام (بناءً على الاستهلاك) وتستفيد من وفورات الحجم الهائلة لخفض التكاليف لجميع العملاء.",
     "domain": "Cloud Economics"
@@ -3367,7 +3367,7 @@
     "C": "Amazon EC2",
     "D": "Amazon OpenSearch Service",
     "E": "Amazon Elastic File System (Amazon EFS)",
-    "correct": "BC",
+    "correct": "B,C",
     "explanation_en": "Amazon Aurora (PostgreSQL-compatible) and Amazon EC2 (where you can install PostgreSQL yourself) both support PostgreSQL databases.",
     "explanation_ar": "يدعم Amazon Aurora (المتوافق مع PostgreSQL) وAmazon EC2 (حيث يمكنك تثبيت PostgreSQL بنفسك) قواعد بيانات PostgreSQL.",
     "domain": "Databases"
@@ -3485,7 +3485,7 @@
     "C": "AWS Schema Conversion Tool",
     "D": "AWS Systems Manager",
     "E": "Amazon EMR",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "AWS DMS migrates data, and the Schema Conversion Tool converts commercial database schemas (e.g., Oracle) to open-source targets (e.g., PostgreSQL).",
     "explanation_ar": "يقوم AWS DMS بترحيل البيانات، وتقوم أداة تحويل المخطط بتحويل مخططات قواعد البيانات التجارية (مثل Oracle) إلى أهداف مفتوحة المصدر (مثل PostgreSQL).",
     "domain": "Migration"
@@ -3525,7 +3525,7 @@
     "C": "Repurchase",
     "D": "Replatform",
     "E": "Refactor",
-    "correct": "BC",
+    "correct": "B,C",
     "explanation_en": "Since the CMS is incompatible, the company can either purchase a new cloud-native CMS (Repurchase) or move the existing app as-is if technically feasible (Rehost).",
     "explanation_ar": "بما أن نظام إدارة المحتوى غير متوافق، يمكن للشركة إما شراء نظام إدارة محتوى جديد متوافق مع السحابة (إعادة الشراء) أو نقل التطبيق الحالي كما هو إذا كان ذلك ممكنًا تقنيًا (إعادة الاستضافة).",
     "domain": "Migration"
@@ -3539,7 +3539,7 @@
     "C": "Rotate credentials on a regular basis.",
     "D": "Create a shared set of access keys for system administrators.",
     "E": "Configure multi-factor authentication (MFA).",
-    "correct": "CE",
+    "correct": "C,E",
     "explanation_en": "AWS recommends regularly rotating credentials and enabling MFA on all privileged accounts (including root) to enhance security.",
     "explanation_ar": "توصي AWS بتدوير بيانات الاعتماد بانتظام وتمكين المصادقة الثنائية (MFA) على جميع الحسابات ذات الامتيازات (بما في ذلك الحساب الجذري) لتعزيز الأمان.",
     "domain": "Security"
@@ -3657,7 +3657,7 @@
     "C": "Users experience increased speed and agility.",
     "D": "Users benefit from massive economies of scale.",
     "E": "Users can move hardware from their data center to the AWS Cloud.",
-    "correct": "CD",
+    "correct": "C,D",
     "explanation_en": "Cloud adoption provides increased speed/agility (rapid provisioning) and economies of scale (lower costs due to AWS’s scale).",
     "explanation_ar": "يوفر تبني السحابة سرعة/مرونة متزايدة (توفير سريع) ووفورات الحجم (تكاليف أقل بسبب حجم AWS).",
     "domain": "Cloud Benefits"
@@ -3749,7 +3749,7 @@
     "C": "Encrypt data at rest on associated storage.",
     "D": "Install the physical hardware and cabling.",
     "E": "Provide physical security for the EC2 instances.",
-    "correct": "BC",
+    "correct": "B,C",
     "explanation_en": "Customers are responsible for patching the guest OS and encrypting data at rest (e.g., via EBS encryption); AWS handles the hypervisor and hardware.",
     "explanation_ar": "العملاء مسؤولون عن تصحيح نظام التشغيل الضيف وتشفير البيانات أثناء الراحة (مثلًا عبر تشفير EBS)؛ بينما تتعامل AWS مع برنامج الإشراف (hypervisor) والعتاد.",
     "domain": "Shared Responsibility"
@@ -4062,7 +4062,7 @@
     "C": "Complete control over the physical security of the infrastructure",
     "D": "Flexibility to scale up in minutes as the application becomes popular",
     "E": "Ability to pick the specific data centers that will host the application servers",
-    "correct": "BD",
+    "correct": "B,D",
     "explanation_en": "Cloud offers agility (rapid experimentation) and elasticity (instant scaling), unlike on-premises which requires upfront CAPEX and fixed capacity.",
     "explanation_ar": "توفر السحابة المرونة (التجريب السريع) والمرونة (التوسّع الفوري)، على عكس البنية المحلية التي تتطلب نفقات رأسمالية مبدئية وسعة ثابتة.",
     "domain": "Cloud Benefits"
@@ -4128,7 +4128,7 @@
     "C": "An edge location is an Availability Zone.",
     "D": "There are more AWS Regions than edge locations.",
     "E": "There are more Availability Zones than AWS Regions.",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "There are more AZs than Regions (each Region has multiple AZs), and far more edge locations (100+) than Regions (30+).",
     "explanation_ar": "هناك المزيد من مناطق التوفر (AZs) من المناطق (كل منطقة تحتوي على عدة مناطق توفر)، وهناك عدد أكبر بكثير من مواقع الحافة (100+) من المناطق (30+).",
     "domain": "Global Infrastructure"
@@ -4168,7 +4168,7 @@
     "C": "Elasticity",
     "D": "Pay-as-you-go resource",
     "E": "High availability",
-    "correct": "CD",
+    "correct": "C,D",
     "explanation_en": "Elasticity (auto-scaling) and pay-as-you-go pricing allow costs to align precisely with actual usage, avoiding over-provisioning.",
     "explanation_ar": "المرونة (القياس التلقائي) ونموذج الدفع حسب الاستخدام تسمح بمواءمة التكاليف بدقة مع الاستخدام الفعلي، وتجنب التخصيص الزائد.",
     "domain": "Cloud Economics"
@@ -4221,7 +4221,7 @@
     "C": "AWS Management Console",
     "D": "AWS Resource Access Manager (AWS RAM)",
     "E": "AWS Secrets Manager",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "Users can change their IAM password via the AWS Management Console or by using the AWS CLI command 'aws iam change-password'.",
     "explanation_ar": "يمكن للمستخدمين تغيير كلمة مرور IAM الخاصة بهم عبر وحدة تحكم AWS أو باستخدام أمر AWS CLI 'aws iam change-password'.",
     "domain": "Security"
@@ -4287,7 +4287,7 @@
     "C": "Use inline policies instead of customer managed policies.",
     "D": "Grant maximum privileges to IAM users.",
     "E": "Use groups to assign permissions to IAM users.",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "AWS recommends creating individual IAM users (not sharing credentials) and using groups to assign permissions for easier management.",
     "explanation_ar": "توصي AWS بإنشاء مستخدمي IAM فرديين (بدون مشاركة بيانات الاعتماد) واستخدام المجموعات لتعيين الأذونات لتسهيل الإدارة.",
     "domain": "Security"
@@ -4340,7 +4340,7 @@
     "C": "AWS Regions",
     "D": "Amazon S3",
     "E": "Amazon VPC",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "The AWS global infrastructure is composed of Regions, Availability Zones, and edge locations. Services like S3 and ElastiCache run on this infrastructure.",
     "explanation_ar": "تتكوّن البنية التحتية العالمية لـ AWS من المناطق ومناطق التوفر ومواقع الحافة. وتعمل خدمات مثل S3 وElastiCache على هذه البنية.",
     "domain": "Global Infrastructure"
@@ -4354,7 +4354,7 @@
     "C": "Guest operating systems",
     "D": "Physical security of hardware",
     "E": "Credentials and policies",
-    "correct": "AD",
+    "correct": "A,D",
     "explanation_en": "AWS is responsible for the security OF the cloud (hardware, global infrastructure, hypervisor), while customers are responsible for security IN the cloud.",
     "explanation_ar": "تتحمل AWS مسؤولية أمان السحابة (العتاد، البنية التحتية العالمية، برنامج الإشراف)، بينما يكون العملاء مسؤولين عن الأمان في السحابة.",
     "domain": "Shared Responsibility"
@@ -4550,7 +4550,7 @@
     "C": "Use inline policies instead of customer managed policies.",
     "D": "Grant maximum privileges to IAM users.",
     "E": "Use groups to assign permissions to IAM users.",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "AWS recommends creating individual IAM users (not sharing credentials) and using groups to assign permissions for easier management.",
     "explanation_ar": "توصي AWS بإنشاء مستخدمي IAM فرديين (بدون مشاركة بيانات الاعتماد) واستخدام المجموعات لتعيين الأذونات لتسهيل الإدارة.",
     "domain": "Security"
@@ -4603,7 +4603,7 @@
     "C": "AWS Regions",
     "D": "Amazon S3",
     "E": "Amazon VPC",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "The AWS global infrastructure is composed of Regions, Availability Zones, and edge locations. Services like S3 and ElastiCache run on this infrastructure.",
     "explanation_ar": "تتكوّن البنية التحتية العالمية لـ AWS من المناطق ومناطق التوفر ومواقع الحافة. وتعمل خدمات مثل S3 وElastiCache على هذه البنية.",
     "domain": "Global Infrastructure"
@@ -4617,7 +4617,7 @@
     "C": "Guest operating systems",
     "D": "Physical security of hardware",
     "E": "Credentials and policies",
-    "correct": "AD",
+    "correct": "A,D",
     "explanation_en": "AWS is responsible for the security OF the cloud (hardware, global infrastructure, hypervisor), while customers are responsible for security IN the cloud.",
     "explanation_ar": "تتحمل AWS مسؤولية أمان السحابة (العتاد، البنية التحتية العالمية، برنامج الإشراف)، بينما يكون العملاء مسؤولين عن الأمان في السحابة.",
     "domain": "Shared Responsibility"
@@ -4813,7 +4813,7 @@
     "C": "Stop guessing capacity.",
     "D": "Design applications to run in a single Availability Zone.",
     "E": "Plan to increase AWS service quotas first in a secondary AWS Region.",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "The Reliability pillar emphasizes automatic recovery from failure and avoiding over-provisioning by not guessing capacity needs.",
     "explanation_ar": "تركّز ركيزة الموثوقية على الاسترداد التلقائي من الأعطال وتجنب التخصيص الزائد من خلال عدم تخمين احتياجات السعة.",
     "domain": "Architecture"
@@ -4996,7 +4996,7 @@
     "C": "Amazon Detective",
     "D": "AWS Compute Optimizer",
     "E": "AWS Billing Conductor",
-    "correct": "BD",
+    "correct": "B,D",
     "explanation_en": "AWS Cost Explorer and AWS Compute Optimizer provide rightsizing recommendations to optimize EC2 usage and reduce costs.",
     "explanation_ar": "يوفر AWS Cost Explorer وAWS Compute Optimizer توصيات لتحديد الحجم المناسب لتحسين استخدام EC2 وتقليل التكاليف.",
     "domain": "Cost Optimization"
@@ -5075,7 +5075,7 @@
     "C": "TypeScript",
     "D": "Ruby",
     "E": "PHP",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "AWS CDK supports TypeScript, Python, Java, C#, and Go. As of the exam scope, Python and TypeScript are primary supported languages.",
     "explanation_ar": "يدعم AWS CDK TypeScript وPython وJava وC# وGo. وضمن نطاق الامتحان، Python وTypeScript هما اللغتان المدعومتان رئيسيًا.",
     "domain": "DevOps"
@@ -5115,7 +5115,7 @@
     "C": "Protect the AWS environment using multi-factor authentication (MFA).",
     "D": "Grant users access to AWS data centers.",
     "E": "Provide firewall protection for applications from common web attacks.",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "IAM controls who can access AWS services/resources (via policies) and supports MFA for enhanced security of user accounts.",
     "explanation_ar": "يتحكم IAM في من يمكنه الوصول إلى خدمات/موارد AWS (عبر السياسات) ويدعم المصادقة الثنائية (MFA) لتعزيز أمان حسابات المستخدمين.",
     "domain": "Security"
@@ -5611,7 +5611,7 @@
     "C": "Secure the access of physical AWS facilities.",
     "D": "Patch applications that run on Amazon EC2 instances.",
     "E": "Perform infrastructure patching and maintenance.",
-    "correct": "CE",
+    "correct": "C,E",
     "explanation_en": "AWS is responsible for physical security and infrastructure maintenance; customers manage IAM, security groups, and application patching.",
     "explanation_ar": "تتحمل AWS مسؤولية الأمان المادي وصيانة البنية التحتية؛ بينما يدير العملاء IAM ومجموعات الأمان وتصحيح التطبيقات.",
     "domain": "Shared Responsibility"
@@ -5664,7 +5664,7 @@
     "C": "Network access control list (network ACL)",
     "D": "AWS Budgets",
     "E": "Amazon Elastic Block Store (Amazon EBS)",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "Both security groups and network ACLs use CIDR notation to define IP address ranges for traffic rules.",
     "explanation_ar": "تستخدم كل من مجموعات الأمان وقوائم التحكم بالشبكة (Network ACLs) تدوين CIDR لتحديد نطاقات عناوين IP لقواعد الحركة.",
     "domain": "Networking"
@@ -5834,7 +5834,7 @@
     "C": "Patch the Amazon RDS operating system.",
     "D": "Maintain identity and access management controls.",
     "E": "Secure Availability Zones.",
-    "correct": "BD",
+    "correct": "B,D",
     "explanation_en": "Customers are responsible for encrypting their data and managing IAM controls; AWS handles virtualization, RDS patching, and AZ security.",
     "explanation_ar": "العملاء مسؤولون عن تشفير بياناتهم وإدارة عناصر التحكم في IAM؛ بينما تتعامل AWS مع الطبقة الافتراضية وتصحيح RDS وأمن مناطق التوفر.",
     "domain": "Shared Responsibility"
@@ -5848,7 +5848,7 @@
     "C": "Built-in AWS CloudTrail audit capabilities",
     "D": "Auto Scaling policies",
     "E": "Centralized logging",
-    "correct": "BD",
+    "correct": "B,D",
     "explanation_en": "Pay-as-you-go pricing and Auto Scaling allow the company to scale capacity up/down based on demand and pay only for what it uses.",
     "explanation_ar": "تمكّن الأسعار الدفع حسب الاستخدام والقياس التلقائي الشركة من توسيع/تقليص السعة بناءً على الطلب والدفع فقط مقابل ما تستخدمه.",
     "domain": "Cloud Economics"
@@ -6031,7 +6031,7 @@
     "C": "Ability to deploy globally in minutes",
     "D": "Elimination of the cost of IT staff members",
     "E": "Redundancy by default for all compute services",
-    "correct": "BC",
+    "correct": "B,C",
     "explanation_en": "Cloud adoption enables global deployment in minutes and increases agility through rapid provisioning and innovation.",
     "explanation_ar": "يُمكّن اعتماد السحابة من النشر العالمي في دقائق ويزيد المرونة من خلال توفير سريع والابتكار.",
     "domain": "Cloud Benefits"
@@ -6084,7 +6084,7 @@
     "C": "Amazon EMR",
     "D": "Amazon S3",
     "E": "Amazon EC2",
-    "correct": "AD",
+    "correct": "A,D",
     "explanation_en": "AWS Fargate (containers) and Amazon S3 (object storage) are fully serverless services.",
     "explanation_ar": "AWS Fargate (الحاويات) وAmazon S3 (تخزين الكائنات) هما خدمتان بدون خادم بالكامل.",
     "domain": "Compute"
@@ -6307,7 +6307,7 @@
     "C": "Amazon EMR",
     "D": "Amazon S3",
     "E": "Amazon EC2",
-    "correct": "AD",
+    "correct": "A,D",
     "explanation_en": "AWS Fargate (containers) and Amazon S3 (object storage) are fully serverless services.",
     "explanation_ar": "AWS Fargate (الحاويات) وAmazon S3 (تخزين الكائنات) هما خدمتان بدون خادم بالكامل.",
     "domain": "Compute"
@@ -6582,7 +6582,7 @@
     "C": "AWS Support Center",
     "D": "AWS Application Discovery Service",
     "E": "AWS Database Migration Service (AWS DMS)",
-    "correct": "AB",
+    "correct": "A,B",
     "explanation_en": "AWS Pricing Calculator estimates future costs; Migration Evaluator analyzes on-premises data to build TCO-based business cases.",
     "explanation_ar": "يقدّر حاسب AWS للأسعار التكاليف المستقبلية؛ بينما يحلّل Migration Evaluator البيانات المحلية لبناء حالات عمل مبنية على تكلفة الملكية الإجمالية.",
     "domain": "Migration"
@@ -6609,7 +6609,7 @@
     "C": "Automatic security configuration of all applications that are migrated to the cloud",
     "D": "Elimination of the need for disaster recovery planning",
     "E": "Faster deployment of new features and applications",
-    "correct": "AE",
+    "correct": "A,E",
     "explanation_en": "Cloud adoption reduces hardware management overhead and accelerates innovation through rapid provisioning.",
     "explanation_ar": "يقلل اعتماد السحابة من عبء إدارة العتاد ويسرع الابتكار من خلال توفير سريع.",
     "domain": "Cloud Benefits"
@@ -6623,7 +6623,7 @@
     "C": "Use agile methods to rapidly iterate and evolve.",
     "D": "Use a new data and analytics platform to create actionable insights.",
     "E": "Migrate and modernize legacy infrastructure.",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "Realigning teams and adopting agile methods improve responsiveness to customer needs under the CAF People perspective.",
     "explanation_ar": "إعادة محاذاة الفرق واعتماد الأساليب الرشيقة يحسّن الاستجابة لاحتياجات العملاء ضمن منظور الأفراد في CAF.",
     "domain": "Cloud Strategy"
@@ -7196,7 +7196,7 @@
     "C": "Compute Savings Plan",
     "D": "Spot Instance",
     "E": "All Upfront payment",
-    "correct": "AE",
+    "correct": "A,E",
     "explanation_en": "Standard Reserved Instances with All Upfront payment provide the highest discount for steady, predictable workloads over 1 year.",
     "explanation_ar": "توفر المثيلات المحجوزة القياسية مع الدفع المقدم بالكامل أكبر خصم لأعباء العمل المستقرة والقابلة للتنبؤ لمدة سنة واحدة.",
     "domain": "Billing & Cost Management"
@@ -8238,7 +8238,7 @@
     "C": "Phone, web, and chat support 24 hours a day, 7 days a week",
     "D": "Full set of AWS Trusted Advisor best practice checks",
     "E": "Well-Architected reviews",
-    "correct": "CD",
+    "correct": "C,D",
     "explanation_en": "AWS Business Support includes 24/7 support and full access to Trusted Advisor checks (security, cost, etc.).",
     "explanation_ar": "يتضمن دعم AWS Business الدعم على مدار الساعة والوصول الكامل إلى فحوصات Trusted Advisor (الأمان، التكلفة، إلخ).",
     "domain": "Support"
