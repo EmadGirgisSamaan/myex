@@ -282,7 +282,7 @@
     "C": "System elasticity",
     "D": "Agile development",
     "E": "Operational excellence",
-    "correct": "BE",
+    "correct": "B,E",
     "explanation_en": "The five pillars of the AWS Well-Architected Framework are: Operational Excellence, Security, Reliability, Performance Efficiency, and Cost Optimization.",
     "explanation_ar": "أركان إطار عمل AWS Well-Architected الخمسة هي: التميّز التشغيلي، والأمن، والموثوقية، وكفاءة الأداء، وتحسين التكلفة.",
     "domain": "Architecture"
@@ -309,7 +309,7 @@
     "C": "Minimize usage of managed services.",
     "D": "Force frequent application reinstallations by users.",
     "E": "Reduce the need for users to reinstall applications.",
-    "correct": "AE",
+    "correct": "A,E",
     "explanation_en": "Maximizing EC2 utilization reduces wasted compute capacity, and reducing app reinstalls lowers energy consumption and resource use—both align with AWS sustainability goals.",
     "explanation_ar": "يعمل تعظيم استخدام مثيلات EC2 على تقليل السعة الحاسوبية المهدرة، وتقليل إعادة تثبيت التطبيقات يخفض استهلاك الطاقة واستخدام الموارد—وكلاهما يتماشى مع أهداف الاستدامة من AWS.",
     "domain": "Sustainability"
@@ -323,7 +323,7 @@
     "C": "AWS eliminates the need for on-premises IT staff.",
     "D": "AWS uses economies of scale to continually reduce prices.",
     "E": "AWS offers a single pricing model for Amazon EC2 instances.",
-    "correct": "AD",
+    "correct": "A,D",
     "explanation_en": "AWS shifts costs from CapEx to OpEx (pay-as-you-go) and leverages massive economies of scale to reduce prices over time, both lowering TCO compared to on-premises infrastructure.",
     "explanation_ar": "تحوّل AWS التكاليف من نفقات رأسمالية إلى نفقات تشغيلية (ادفع حسب الاستخدام) وتستفيد من وفورات الحجم الهائلة لخفض الأسعار بمرور الوقت، مما يقلل تكلفة الملكية الإجمالية مقارنةً بالبنية التحتية المحلية.",
     "domain": "Cloud Economics"
@@ -350,7 +350,7 @@
     "C": "Amazon Elastic Kubernetes Service (Amazon EKS)",
     "D": "AWS Fargate",
     "E": "AWS Lambda",
-    "correct": "DE",
+    "correct": "D,E",
     "explanation_en": "AWS Lambda and AWS Fargate are serverless services. Lambda runs code without managing servers, and Fargate runs containers without managing the underlying EC2 instances.",
     "explanation_ar": "AWS Lambda وAWS Fargate هما خدمتان بدون خادم. تقوم Lambda بتشغيل الكود دون إدارة الخوادم، ويقوم Fargate بتشغيل الحاويات دون إدارة مثيلات EC2 الأساسية.",
     "domain": "Compute"
@@ -624,7 +624,7 @@
     "C": "Organization design",
     "D": "Risk management",
     "E": "Modern application development",
-    "correct": "AC",
+    "correct": "A,C",
     "explanation_en": "The People perspective in AWS CAF focuses on preparing the organization for cloud adoption through culture, roles, and organizational structure—hence 'organizational alignment' and 'organization design'.",
     "explanation_ar": "يركّز منظور الأفراد في إطار عمل CAF على إعداد المنظمة لاعتماد السحابة من خلال الثقافة والأدوار والهيكل التنظيمي — وبالتالي 'المحاذاة التنظيمية' و'تصميم المنظمة'.",
     "domain": "Cloud Strategy"
@@ -13382,4 +13382,5 @@
     "domain": "Networking"
   }
 ]
+
 
