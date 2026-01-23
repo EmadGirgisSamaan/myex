@@ -22,6 +22,8 @@
       background: white;
       min-height: 100vh;
       box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      position: relative;
+      padding-right: 200px; /* مساحة للـ sidebar */
     }
     .top-bar {
       background: #0073bb;
@@ -224,6 +226,62 @@
       font-weight: 600;
       color: #fff;
     }
+
+    /* Sidebar for question navigation */
+    .sidebar {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      width: 180px;
+      background: #f1f8ff;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 10;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+    .sidebar h4 {
+      font-size: 13px;
+      color: #0073bb;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .sidebar-columns {
+      display: flex;
+      gap: 8px;
+    }
+    .sidebar-col {
+      flex: 1;
+      font-size: 12px;
+    }
+    .sidebar-col a {
+      display: block;
+      padding: 4px 6px;
+      text-decoration: none;
+      color: #333;
+      border-radius: 4px;
+      margin: 2px 0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sidebar-col a:hover {
+      background: #e1ecf8;
+    }
+    .sidebar-col a.correct::after {
+      content: " ✓";
+      color: #27ae60;
+      font-weight: bold;
+    }
+    .sidebar-col a.wrong::after {
+      content: " ✗";
+      color: #e74c3c;
+      font-weight: bold;
+    }
+    .sidebar-col a.unanswered::after {
+      content: " ○";
+      color: #999;
+    }
   </style>
 </head>
 <body>
@@ -263,6 +321,15 @@
     <div id="loading">Loading questions…</div>
     <div id="examContainer" style="display: none;">
       <form id="examForm"></form>
+    </div>
+  </div>
+
+  <!-- Sidebar for question navigation -->
+  <div class="sidebar" id="questionSidebar">
+    <h4>Section Questions</h4>
+    <div class="sidebar-columns">
+      <div class="sidebar-col" id="sidebarCol1"></div>
+      <div class="sidebar-col" id="sidebarCol2"></div>
     </div>
   </div>
 
@@ -413,6 +480,60 @@ function updateProgress() {
   nextBtn.disabled = currentQuestionIndex === bounds.end - 1;
 }
 
+// دالة لعرض شريط الأسئلة الجانبي
+function renderSidebar() {
+  const bounds = getSectionBounds(currentSection);
+  if (!bounds) return;
+
+  const col1 = document.getElementById('sidebarCol1');
+  const col2 = document.getElementById('sidebarCol2');
+  col1.innerHTML = '';
+  col2.innerHTML = '';
+
+  const totalInSection = bounds.size;
+  // نقسم 1-25 يمين، 26-50 يسار
+  const half = 25;
+
+  for (let i = 0; i < totalInSection; i++) {
+    const qNumber = i + 1; // رقم السؤال داخل القسم (1-50)
+    const globalIndex = bounds.start + i;
+    const q = questionsData[globalIndex];
+    if (!q) continue;
+
+    const link = document.createElement('a');
+    link.textContent = qNumber;
+    link.href = '#';
+    link.onclick = (e) => {
+      e.preventDefault();
+      currentQuestionIndex = globalIndex;
+      renderQuestion(currentQuestionIndex);
+      updateProgress();
+      result.style.display = "none";
+      document.querySelector(".bottom-bar").style.display = "flex";
+    };
+
+    // تحديد الحالة
+    const correctSet = new Set((q.correct || "").split(",").map(a => a.trim().toUpperCase()));
+    const userSet = new Set((userAnswersStore[globalIndex] || []).map(a => a.toUpperCase()));
+
+    let statusClass = 'unanswered';
+    if (userSet.size > 0) {
+      const isCorrect = correctSet.size === userSet.size && 
+                        [...correctSet].every(val => userSet.has(val));
+      statusClass = isCorrect ? 'correct' : 'wrong';
+    }
+
+    link.className = statusClass;
+
+    // توزيع: 1-25 → col1 (اليمين)، 26-50 → col2 (اليسار)
+    if (qNumber <= half) {
+      col1.appendChild(link);
+    } else {
+      col2.appendChild(link);
+    }
+  }
+}
+
 function goToSection(sectionNum) {
   const bounds = getSectionBounds(sectionNum);
   if (!bounds || bounds.start >= questionsData.length) return;
@@ -425,6 +546,7 @@ function goToSection(sectionNum) {
 
   renderQuestion(currentQuestionIndex);
   updateProgress();
+  setTimeout(renderSidebar, 50); // تحديث الـ sidebar
 
   result.style.display = "none";
   document.querySelector(".bottom-bar").style.display = "flex";
@@ -442,11 +564,13 @@ function jumpToQuestionBookmark(qNumber) {
       currentQuestionIndex = index;
       renderQuestion(currentQuestionIndex);
       updateProgress();
-    }, 50);
+      renderSidebar();
+    }, 100);
   } else {
     currentQuestionIndex = index;
     renderQuestion(currentQuestionIndex);
     updateProgress();
+    renderSidebar();
   }
 }
 
@@ -456,6 +580,7 @@ function prevQuestion() {
     currentQuestionIndex--;
     renderQuestion(currentQuestionIndex);
     updateProgress();
+    renderSidebar();
     result.style.display = "none";
     document.querySelector(".bottom-bar").style.display = "flex";
   }
@@ -467,12 +592,13 @@ function nextQuestion() {
     currentQuestionIndex++;
     renderQuestion(currentQuestionIndex);
     updateProgress();
+    renderSidebar();
     result.style.display = "none";
     document.querySelector(".bottom-bar").style.display = "flex";
   }
 }
 
-// ✅ ✅ ✅ دالة Check Answer النهائية — تعمل 100% ✅ ✅ ✅
+// ✅ دالة Check Answer مع تحديث الـ sidebar
 function checkAnswer() {
   const questionDiv = document.querySelector('.question');
   if (!questionDiv) return;
@@ -505,6 +631,9 @@ function checkAnswer() {
       label.classList.add('highlight-missed', 'correct-answer');
     }
   });
+
+  // تحديث العلامات في الـ sidebar
+  renderSidebar();
 }
 
 function toggleExplanation() {
